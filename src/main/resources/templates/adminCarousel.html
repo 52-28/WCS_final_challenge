@@ -52,14 +52,135 @@
 
       <div class="container-fluid">
         <h1 class="mt-4">Administration du Carousel</h1>
-        <p> bienvenue sur votre console d'administration, d'ici vous pouvez tout administrer.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate amet iusto error ratione, aperiam itaque aspernatur magni minus aliquam culpa laudantium ut voluptas voluptatum quaerat adipisci similique expedita, nisi magnam!</p>
-		<p>Ut eaque facilis sequi ab dolorem impedit eveniet quia cupiditate, laudantium laborum quo assumenda officiis, quis sapiente voluptatem quod eius velit placeat rerum temporibus? Aliquid debitis eveniet maiores amet provident.</p>
-		<p>At vel natus corporis, ab provident ad, quibusdam quaerat delectus nemo animi hic, reprehenderit! Iure voluptates consectetur doloremque. Nostrum, sunt totam libero corporis animi earum dicta optio odio blanditiis atque.</p>
-		<p>Porro consequatur, at veritatis. Earum laborum natus labore, maiores corrupti tenetur culpa voluptatem tempora atque pariatur doloremque minus ducimus dignissimos. Cupiditate explicabo dolores maiores sit optio, vero amet magnam, voluptate.</p>
-    </div>
+ 		<div class="row d-flex justify-content-center align-items-center m-2">
+	 		<!-- Button trigger modal -->
+			<div class="col-8 m-5 d-flex align-items-center justify-content-center">
+				<button type="button" class="btn btn-primary my-auto" data-toggle="modal" data-target="#exampleModal">
+				 	Créer un item de carousel
+				</button>
+			</div>
+ 			<div class="col-8 m-5 " th:each="carousel : ${carousel}">
+	 			<div class="card d-flex flex-row">
+	 			  <div class="w-50 d-flex">
+					  <img class="card-img-top my-auto" th:src="${carousel.picture}" alt="Card image cap">
+				  </div>
+				  <div class="card-body">
+				    <h5 class="card-title" th:text="${carousel.title}">Card title</h5>
+				    <p class="card-text" th:text="${carousel.description}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<div class="col-12 d-flex flex-row justify-content-around">
+					    <a href="admin/edit" class="btn btn-primary mt-auto">Edit</a>
+					    <form method="post" th:action="@{/admin/carousel/delete}">
+   		                     <input type="hidden" name="id" th:value="${carousel.id}">
+                             <button type="submit" class="btn btn-primary" onclick="return confirm('Etes-vous sûrs de vouloir supprimer cet item ? Il sera définitivement effacé de la base de donnée !');">
+								delete
+             				 </button>
+                        </form>
+                    </div>
+				  </div>
+				</div>
+			</div>
+ 		</div>
+     </div>
     <!-- /#page-content-wrapper -->
-
+<!-- Modal create-->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Création un item de carousel</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<form method="post" th:action="|/admin/carousel/edit|">
+			  
+			  <div class="form-group row">
+			    <label for="inputTitle" class="col-sm-11 col-form-label">titre</label>
+			    <div class="col-sm-11">
+			      <input type="text" class="form-control" name="title" id="inputTitle" placeholder="Merci de renseigner un titre" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+				<label for="inputTextarea" class="col-sm-11 col-form-label">Description</label>
+ 				<div class="col-sm-11">
+				    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3">
+				    </textarea>
+				</div> 
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputPicture" class="col-sm-11 col-form-label">Url de l'image</label>
+			    <div class="col-sm-11">
+			      <input type="text" class="form-control" name="picture" id="inputPicture" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputOrder" class="col-sm-11 col-form-label">ordre d'apparition</label>
+			    <div class="col-sm-11">
+			      <input type="number" class="form-control" name="orderNumber" id="inputOrder" required>
+			    </div>
+			  </div>			
+			  <div class="form-group row">
+			    <div class="col-sm-11 d-flex">
+			      <button type="submit" class="btn btn-primary mx-auto">Créer</button>
+			    </div>
+			  </div>
+			</form>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- Modal update-->
+	<div th:each="carousel : ${carousel}" class="modal fade" th:id="${carousel.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" th:id="|exampleModalLabel ${carousel.id}|">Création un item de carousel</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<form method="post" th:action="|/admin/carousel/edit|">
+				<input type="hidden" name="id" th:value="${carousel.id}">
+			  <div class="form-group row">
+			    <label for="inputTitle" class="col-sm-11 col-form-label">titre</label>
+			    <div class="col-sm-11">
+			      <input type="text" class="form-control" name="title" id="inputTitle" placeholder="Merci de renseigner un titre" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+				<label for="inputTextarea" class="col-sm-11 col-form-label">Description</label>
+ 				<div class="col-sm-11">
+				    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3">
+				    </textarea>
+				</div> 
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputPicture" class="col-sm-11 col-form-label">Url de l'image</label>
+			    <div class="col-sm-11">
+			      <input type="text" class="form-control" name="picture" id="inputPicture" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputOrder" class="col-sm-11 col-form-label">ordre d'apparition</label>
+			    <div class="col-sm-11">
+			      <input type="number" class="form-control" name="orderNumber" id="inputOrder" required>
+			    </div>
+			  </div>			
+			  <div class="form-group row">
+			    <div class="col-sm-11 d-flex">
+			      <button type="submit" class="btn btn-primary mx-auto">Créer</button>
+			    </div>
+			  </div>
+			</form>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
   </div>
   <!-- /#wrapper -->
 

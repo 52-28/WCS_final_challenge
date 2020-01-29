@@ -24,6 +24,14 @@ public class Carousel {
 	public Carousel() {
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getOrderNumber() {
 		return orderNumber;
 	}
