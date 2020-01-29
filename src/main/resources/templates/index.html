@@ -1,82 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name= "Author" content= "Aymeric">
-		<meta name= "Description" content= "Bienvenue sur le site du Wild Circus, un projet final pour s'auto-évaluer après 5 mois passés à la wild code school d'Orléans!">
-		<title>Bienvenue sur le site du Wild Circus!</title>
-		
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lux/bootstrap.min.css">
-		<link rel="stylesheet" href="style.css">
-	</head>
+	<head th:replace="head.html :: head"></head>
 	<body>
-		<!--  Nav -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		  <a class="navbar-brand" href="#">Navbar</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-		    <div class="navbar-nav">
-		      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-		      <a class="nav-item nav-link" href="#">Features</a>
-		      <a class="nav-item nav-link" href="#">Pricing</a>
-		      <a class="nav-item nav-link disabled" href="#">Disabled</a>
-		    </div>
-		  </div>
-		</nav>
-		<header>
-			<!-- Fin Nav -->
-			<!-- Carroussel -->
-			<div id="carousel" class="carousel slide d-none d-md-block" data-ride="carousel" >
-			  <ol class="carousel-indicators">
-			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			  </ol>
-			  <div class="carousel-inner mt-0 ">
-			    <div class="carousel-item active">
-			      <div class="container-fluid p-0 customCarouselItem">
-		            <img class="d-block img-fluid" src="https://via.placeholder.com/1920x800" alt="First slide">
-		             <div class="carousel-caption text-left pl-2 d-flex flex-column">
-					    <h2 class="text-light">Nous sommes Bientot à Paris!</h2>
-					    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem incidunt, tenetur iste at perspiciatis vero illo soluta saepe optio! Dolorem earum itaque nobis, quasi natus repellat, mollitia amet quaerat. Odio?</p>
-					    <button class="btn btn-primary ml-auto mr-2">Réserver mes places!</button>
-				  	</div> 
-	  			 </div>		     
-			    </div>
-			    <div class="carousel-item">
-				    <div class="container-fluid p-0 customCarouselItem">
-				    	<img class="d-block img-fluid" src="https://via.placeholder.com/1920x800" alt="Second slide">
-			          	<div class="carousel-caption text-left pl-2 d-flex flex-column">
-					    	<h2 class="text-light">Nous sommes Bientot à Paris!</h2>
-					    	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem incidunt, tenetur iste at perspiciatis vero illo soluta saepe optio! Dolorem earum itaque nobis, quasi natus repellat, mollitia amet quaerat. Odio?</p>
-					    	<button class="btn btn-primary ml-auto mr-2">Réserver mes places!</button>
-						</div> 
-					</div>
-			    </div>
-			    <div class="carousel-item">
-			    	<div class="container-fluid p-0 customCarouselItem">
-			      		<img class="d-block img-fluid" src="https://via.placeholder.com/1920x800" alt="Third slide">
-				       	<div class="carousel-caption text-left pl-2 d-flex flex-column">
-					    	<h2 class="text-light">Nous sommes Bientot à Paris!</h2>
-					    	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem incidunt, tenetur iste at perspiciatis vero illo soluta saepe optio! Dolorem earum itaque nobis, quasi natus repellat, mollitia amet quaerat. Odio?</p>
-					    	<button class="btn btn-primary ml-auto mr-2">Réserver mes places!</button>
-						</div> 
-					</div>
-			    </div>
-			  </div>
-			  <a class="carousel-control-prev " href="#carousel" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
-			</div>
-		</header>
+		 <nav th:replace="navbar.html :: navbar"></nav>		
+ 		 <header th:replace="header.html :: header"></header>
 		<main class="mt-5">
 		    <div class="container">	
 		        <section class="row mb-5">
