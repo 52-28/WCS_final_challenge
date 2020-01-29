@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+
+.carousel-caption{
+	
+	top:65%;
+	max-height:30%;
+	background-color: rgba(52, 58, 64,0.6);
+}
+
+.staffCard{
+	width:10vw;
+}
