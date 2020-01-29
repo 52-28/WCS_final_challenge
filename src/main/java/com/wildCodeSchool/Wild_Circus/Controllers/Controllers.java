@@ -11,4 +11,9 @@ public class Controllers {
 	public ModelAndView getAdmin() {
 		return new ModelAndView("admin");
 	}
+	
+	@GetMapping("/admin/carousel")
+	public ModelAndView getAdminCarousel() {
+		return new ModelAndView("adminCarousel");
+	}
 }
