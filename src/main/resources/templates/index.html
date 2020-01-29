@@ -6,7 +6,7 @@
  		 <header th:replace="/fragments/header.html :: header"></header>
 		<main class="mt-5">
 		    <div class="container">	
-		        <section class="row mb-5">
+		        <section class="row mb-5" data-aos="fade-right" >
 		          <div class="col-md-7 d-flex flex-column">
 		            <h2>Qui sommes nous?</h2>
 		            <p class="lead">Une grande famille, Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
@@ -18,7 +18,7 @@
 		
 		        <hr class="featurette-divider">
 		
-		        <div class="row mb-5">
+		        <div class="row mb-5" data-aos="fade-left">
 		          	<div class="col-md-7 order-md-2">
 		            	<h2>L'équipe. <span class="text-muted">Voyez par vous même!</span></h2>
 		            	<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
@@ -124,9 +124,14 @@
 		
 		      </div><!-- /.container -->
 		</main>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		  <script>
+		    AOS.init();
+		  </script>
 	</body>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
 </html>
