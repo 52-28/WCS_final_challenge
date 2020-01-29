@@ -68,7 +68,9 @@
 				    <h5 class="card-title" th:text="${carousel.title}">Card title</h5>
 				    <p class="card-text" th:text="${carousel.description}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 					<div class="col-12 d-flex flex-row justify-content-around">
-					    <a href="admin/edit" class="btn btn-primary mt-auto">Edit</a>
+						<button type="button" class="btn btn-primary my-auto" data-toggle="modal" th:data-target="|#${carousel.id}|">
+				 			editer
+						</button>
 					    <form method="post" th:action="@{/admin/carousel/delete}">
    		                     <input type="hidden" name="id" th:value="${carousel.id}">
                              <button type="submit" class="btn btn-primary" onclick="return confirm('Etes-vous sûrs de vouloir supprimer cet item ? Il sera définitivement effacé de la base de donnée !');">
@@ -137,14 +139,14 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" th:id="|exampleModalLabel ${carousel.id}|">Création un item de carousel</h5>
+	        <h5 class="modal-title" th:id="|exampleModalLabel ${carousel.id}|" th:text="|Edition de l'item: ${carousel.title}|">edition d'un item de carousel</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
 			<form method="post" th:action="|/admin/carousel/edit|">
-				<input type="hidden" name="id" th:value="${carousel.id}">
+			  <input type="hidden" name="id" th:value="${carousel.id}">
 			  <div class="form-group row">
 			    <label for="inputTitle" class="col-sm-11 col-form-label">titre</label>
 			    <div class="col-sm-11">
