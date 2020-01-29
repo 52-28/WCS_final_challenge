@@ -1,0 +1,6 @@
+US1 : en tant que visiteur, je peux acceder aux informations générales afin de comprendre ce qu'est le wild circus
+US2 : en tant que visiteur, je peux acceder a la visualisation des membres de l'équipe afin d'avoir un apercu des représentations qu'ils font
+US3 : en tant que visiteur, je peux acceder a la recherche des spectacles afin de reserver des places
+US4 : en tant qu'administrateur du site, je peux editer la section carroussel, presentation generale et equipe afin de garder mon site a jour
+US5 : en tant qu'administrateur, je peux gerer les evenements afin de valider les réservations demandées.
+
