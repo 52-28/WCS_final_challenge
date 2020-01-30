@@ -10,8 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wildCodeSchool.Wild_Circus.Repositories.CarouselRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.PresentationRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.StaffRepo;
 import com.wildCodeSchool.Wild_Circus.entities.Carousel;
 import com.wildCodeSchool.Wild_Circus.entities.Presentation;
+import com.wildCodeSchool.Wild_Circus.entities.Staff;
 import com.wildCodeSchool.Wild_Circus.services.IAdminServices;
 import com.wildCodeSchool.Wild_Circus.services.ImodelServices;
 import com.wildCodeSchool.Wild_Circus.services.ModelServices;
@@ -30,6 +32,9 @@ public class Controllers {
 	
 	@Autowired
 	PresentationRepo presentationRepo;
+	
+	@Autowired
+	StaffRepo staffRepo;
 	
 	@GetMapping("/")
 	public ModelAndView gethome() {
@@ -52,6 +57,26 @@ public class Controllers {
 	public ModelAndView getAdminPresentation() {
 		
 		return adminServices.getadminPresentationModel();
+	}
+	
+	@GetMapping("/admin/equipe")
+	public ModelAndView getAdminStaff() {
+		
+		return adminServices.getadminStaffModel();
+	}
+	
+	@PostMapping("/admin/staff/create")
+	public ModelAndView postAdminStaff(@ModelAttribute Staff staff) {
+	
+		staffRepo.save(staff);
+		return new ModelAndView("redirect:/admin/equipe");
+	}
+	
+	@PostMapping("/admin/staff/delete")
+	public ModelAndView deleteAdminStaff(@RequestParam Long id) {
+	
+		staffRepo.deleteById(id);
+		return new ModelAndView("redirect:/admin/equipe");
 	}
 	
 	@PostMapping("/admin/presentation/update")

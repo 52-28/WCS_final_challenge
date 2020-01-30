@@ -17,8 +17,12 @@
 }
 
 
-.staffCard{
-	width:10vw;
+#carouselStaff{
+	height:60vh;
+}
+
+.cIStaff{
+filter: invert(.5) ;
 }
 
 .section100{
@@ -31,3 +35,42 @@
 	background-color: rgba(252, 214, 227,0.6);
 	background-attachment: fixed;
 }
+
+/* equal card height */
+.row-equal > div[class*='col-'] {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+
+/* ensure equal card height inside carousel */
+.carousel-inner>.row-equal.active, 
+.carousel-inner>.row-equal.next, 
+.carousel-inner>.row-equal.prev {
+    display: flex;
+    flex-direction: row;
+}
+
+.carousel-item-active, 
+.carousel-item-next, 
+.carousel-item-prev {
+    display: flex;
+}
+
+/* prevent flicker during transition */
+.carousel-inner>.row-equal.active.left, 
+.carousel-inner>.row-equal.active.right {
+
+    display: flex;
+}
+
+.carousel-item-left, 
+.carousel-item-right {
+
+    display: flex;
+}
+
+/* control image height */
+
+
+
