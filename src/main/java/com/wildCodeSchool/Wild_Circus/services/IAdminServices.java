@@ -7,4 +7,6 @@ public interface IAdminServices {
 	public ModelAndView getadminCarouselModel();
 	
 	public ModelAndView getadminPresentationModel() ;
+	
+	public ModelAndView getadminStaffModel();
 }

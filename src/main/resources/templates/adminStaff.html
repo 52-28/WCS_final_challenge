@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Console d'administration">
+  <title>Console d'administration</title>
+  <meta name="author" content="Aymeric">
+
+  <title>Console d'administration</title>
+
+  <!-- Bootstrap core CSS -->
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lux/bootstrap.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="../simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Navigation </div>
+      <div class="list-group list-group-flush">
+      	<a href="/admin" class="list-group-item list-group-item-action bg-light">home</a>
+        <a href="/admin/carousel" class="list-group-item list-group-item-action bg-light">Carousel</a>
+        <a href="/admin/presentation" class="list-group-item list-group-item-action bg-light">Presentation</a>
+        <a href="/admin/equipe" class="list-group-item list-group-item-action bg-light">Equipe</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Spectacles</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Reservations</a>
+
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-dark bg-light border-bottom">
+        <button class="navbar-toggler bg-dark text-light" id="menu-toggle">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="mt-4">Administration des équipes</h1>
+ 		<hr class="my-5">
+ 		<div class="row d-flex justify-content-center align-items-center m-2">
+	 		<!-- Button trigger modal -->
+			<div class="col-12 m-5 d-flex align-items-center justify-content-center">
+				<h2>Présentation générale</h2>
+			</div>
+ 			
+ 		</div>
+ 		<div class="row d-flex justify-content-center align-items-center m-2">
+	 		<div class="col-10 d-flex align-items-center justify-content-center">
+		 			<div class="card d-flex flex-row w-100">
+					  <div class="card-body">
+					    <h2 class="card-title" th:text="${presentation.title}">Card title</h2>
+	
+	                    <form method="post" th:action="|/admin/presentation/update|">
+	                   		<input type="hidden" name="id" th:value="${presentation.id}">		  
+							  <div class="form-group row">
+							    <label for="inputTitle" class="col-sm-11 col-form-label">titre</label>
+							    <div class="col-sm-11">
+							      <input type="text" class="form-control" name="title" id="inputTitle" placeholder="Merci de renseigner un titre" th:value="${presentation.title}" required>
+							    </div>
+							  </div>
+							  <div class="form-group row">
+								<label for="inputTextarea" class="col-sm-11 col-form-label">Description</label>
+				 				<div class="col-sm-11">
+								    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" th:text="${presentation.description}" rows="3">
+								    </textarea>
+								</div> 
+							  </div>	
+							  <div class="form-group row">
+							    <div class="col-sm-11 d-flex">
+							      <button type="submit" class="btn btn-primary mx-auto">Editer</button>
+							    </div>
+							  </div>
+							</form>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<hr class="my-5">
+	 		<div class="row d-flex justify-content-center align-items-center m-2">
+		 		<!-- Button trigger modal -->
+				<div class="col-12 m-5 d-flex align-items-center justify-content-center">
+					<h2>Gestion des équipes</h2>
+				</div>
+	 			
+	 		</div>			
+				<div class="row d-flex justify-content-center align-items-center m-2">
+					<div class="col-12 d-flex align-items-center justify-content-center">
+						<button type="button" class="btn btn-primary my-auto" data-toggle="modal" data-target="#exampleModal">
+						 	Créer une équipe
+						</button>
+					</div>
+					<div class="col-8 m-5 " th:each="staff : ${staffs}">
+	 			<div class="card d-flex flex-row">
+	 			  <div class="w-50 d-flex">
+					  <img class="card-img-top my-auto" th:src="${staff.picture}" alt="Card image cap">
+				  </div>
+				  <div class="card-body">
+				    <div class="d-flex justify-content-center align-items-center">
+					    <h5 class="card-title text-center my-auto" th:text="${staff.name}">Card title</h5>
+					    <form method="post" class="d-flex ml-auto w-25" th:action="|/admin/staff/delete|">
+				            <input type="hidden" name="id" th:value="${staff.id}">
+			                <button type="submit" class="btn btn-secondary " onclick="return confirm('Etes-vous sûrs de vouloir supprimer cet item ? Il sera définitivement effacé de la base de donnée !');">							
+	
+								<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash-alt" class="svg-inline--fa fa-trash-alt fa-w-14 w-50" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path></svg>		      			 </button>
+			            </form>		            
+		            </div>
+		            <hr>
+				    <form method="post" th:action="|/admin/staff/create|">
+	                   		<input type="hidden" name="id" th:value="${staff.id}">		  
+							  <div class="form-group row">
+							    <label for="inputTitle" class="col-sm-11 col-form-label">titre</label>
+							    <div class="col-sm-11">
+							      <input type="text" class="form-control" name="name" id="inputTitle" placeholder="Merci de renseigner le nom de l'équipe" th:value="${staff.name}" required>
+							    </div>
+							  </div>
+							  <div class="form-group row">
+							    <label for="inputImageLink" class="col-sm-11 col-form-label">Url de l'image</label>
+							    <div class="col-sm-11">
+							      <input type="text" class="form-control" name="picture" id="inputImageLink" placeholder="Merci de renseigner l'url de l'image" th:value="${staff.picture}" required>
+							    </div>
+							  </div>
+							  <div class="form-group row">
+							    <label for="inputvideoLink" class="col-sm-11 col-form-label">Lien vidéo</label>
+							    <div class="col-sm-11">
+							      <input type="text" class="form-control" name="videoLink" id="inputVideoLink" placeholder="Merci de renseigner l'url du lien video" th:value="${staff.videoLink}" required>
+							    </div>
+							  </div>	
+							  <div class="form-group row">
+							    <div class="col-sm-11 d-flex">
+							      <button type="submit" class="btn btn-primary mx-auto">Editer</button>
+							    </div>							 
+		                       </div> 
+						</form>
+				  </div>
+				</div>
+				</div>
+			</div>
+			</div>
+			<div th:replace="/fragments/modaleCreateStaff.html :: modaleCreateStaff"></div>
+     </div>
+
+
+  <!-- Bootstrap core JavaScript -->
+ 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
