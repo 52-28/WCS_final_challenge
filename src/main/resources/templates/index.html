@@ -4,9 +4,9 @@
 	<body>
 		 <nav th:replace="/fragments/navbar.html :: navbar"></nav>		
  		 <header th:replace="/fragments/header.html :: header"></header>
-		<main class="mt-5">
+		<main>
 		    <div class="container-fluid">	
-		        <section class="row mb-5 mx-5 section100 presentationBG">
+		        <section class="row p-5 section100">
 		          <div class="col-md-7 d-flex flex-column justify-content-center" data-aos="fade-right">
 		            <h2 th:text="${presentation.title}">Qui sommes nous?</h2>
 		            <p class="lead" th:text=${presentation.description}>Une grande famille, Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
