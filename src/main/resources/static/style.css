@@ -20,9 +20,12 @@ main{
 
 
 #carouselStaff{
-	height:60vh;
+	min-height:80vh;
 }
 
+.sectionHeight{
+	min-height:80vh;
+}
 .cIStaff{
 filter: invert(.5) ;
 }
@@ -95,3 +98,34 @@ filter: invert(.5) ;
   margin:0 auto;
 }
 
+.ouahouBg{
+	background: url("https://media.istockphoto.com/photos/glitter-lights-abstract-background-silver-and-white-defocused-picture-id1016559520");
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.bg2{
+	
+	background: url("https://static.vecteezy.com/system/resources/previews/000/518/391/non_2x/vector-stage-and-presentation-of-product-with-sport-light-on-black-studio-background.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: top;
+}
+
+.card-img-top{
+	height:50%;
+	
+}
+
+li{
+	list-style-type: none;
+	
+}
+
+.logo{
+	width:50%;
+}
+
+.logo:hover{
+	filter: invert(1);		
+}

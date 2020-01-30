@@ -1,9 +1,9 @@
-<div class="row mb-5 d-flex justify-content-center align-items-center" data-aos="fade-left" th:fragment="staff">
+<div class="row d-flex justify-content-center align-items-center ouahouBg" data-aos="fade-left" th:fragment="staff">
    <div class="col-md-5 order-md-2 ">
-      <h2 th:text="${staffPresentation.title}">L'équipe. <span class="text-muted">Voyez par vous même!</span></h2>
+      <h2 class="pt-5" th:text="${staffPresentation.title}">L'équipe. <span class="text-muted">Voyez par vous même!</span></h2>
       <p class="lead" th:text="${staffPresentation.description}">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
    </div>
-   <div class="col-md-7 d-flex">
+   <div class="col-md-7 d-flex pb-5">
    <div id="carouselStaff" class="carousel slide w-100 d-flex align-items-center" data-ride="carousel" data-interval="false">
 			  <ol class="carousel-indicators">
 	    <!-- 
@@ -19,9 +19,9 @@
                <div class="col-md-4 mx-auto" th:each="staffElement : ${staff}">
                   <div class="card staffCard" >
                      <img class="card-img-top" th:src="${staffElement.picture}" alt="Card image cap">
-                     <div class="card-body">
+                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title text-center" th:text=${staffElement.name}>Dresseurs</h5>
- 						<a th:href="${staffElement.videoLink}" th:id="|headerVideoLink${staffElement.id}|" target="_blank" class="btn btn-primary">Vidéo</a>
+ 						<a th:href="${staffElement.videoLink}" th:id="|headerVideoLink${staffElement.id}|" target="_blank" class="btn btn-primary mt-auto">Vidéo</a>
                      </div>
                   </div>
                </div>

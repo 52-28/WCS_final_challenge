@@ -19,10 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wildCodeSchool.Wild_Circus.Repositories.CarouselRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.PresentationRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.PrestationRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.ReservationRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.StaffRepo;
 import com.wildCodeSchool.Wild_Circus.entities.Carousel;
 import com.wildCodeSchool.Wild_Circus.entities.Presentation;
 import com.wildCodeSchool.Wild_Circus.entities.Prestation;
+import com.wildCodeSchool.Wild_Circus.entities.Reservation;
 import com.wildCodeSchool.Wild_Circus.entities.Staff;
 import com.wildCodeSchool.Wild_Circus.services.IAdminServices;
 import com.wildCodeSchool.Wild_Circus.services.IUtilServices;
@@ -53,9 +55,11 @@ public class Controllers {
 	@Autowired
 	IUtilServices utilServices;
 	
+	@Autowired
+	ReservationRepo reservationRepo;
+	
 	@GetMapping("/")
 	public ModelAndView gethome(@RequestParam(value="prestationsResult", required=false) List<Prestation> prestationsResult) {
-		System.out.println(prestationsResult == null);
 		return modelServices.getHomeModel(prestationsResult);
 	}
 	
@@ -74,8 +78,10 @@ public class Controllers {
 	}
 	
 	@PostMapping("/postReservation")
-	public ModelAndView postForReservation(@ModelAttribute Long prestationId) {
-		return null;
+	public ModelAndView postForReservation(@ModelAttribute Reservation reservation, @RequestParam Long prestationId) {
+		reservation.setPrestation(prestationRepo.getOne(prestationId));
+		reservationRepo.save(reservation);
+		return new ModelAndView("redirect:/");
 	}
 	
 	@GetMapping("/admin/carousel")
