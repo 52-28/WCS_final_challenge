@@ -43,8 +43,15 @@ public class Controllers {
 		return adminServices.getadminCarouselModel();
 	}
 	
-	@PostMapping("/admin/carousel/edit")
+	@PostMapping("/admin/carousel/create")
 	public ModelAndView postCarouselItem(@ModelAttribute Carousel carousel) {
+		
+		carouselRepo.save(carousel);
+		return new ModelAndView("redirect:/admin/carousel");
+	}
+
+	@PostMapping("/admin/carousel/edit")
+	public ModelAndView editCarouselItem(@ModelAttribute Carousel carousel) {
 		
 		carouselRepo.save(carousel);
 		return new ModelAndView("redirect:/admin/carousel");

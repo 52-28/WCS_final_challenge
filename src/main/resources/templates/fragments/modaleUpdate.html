@@ -1,0 +1,48 @@
+<div th:each="carousel : ${carousel}" class="modal fade" th:id="${carousel.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" th:fragment="modaleUpdate">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" th:id="|exampleModalLabel ${carousel.id}|" th:text="|Edition de l'item: ${carousel.title}|">edition d'un item de carousel</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<form method="post" th:action="|/admin/carousel/edit|">
+			  <input type="hidden" name="id" th:value="${carousel.id}">
+			  <div class="form-group row">
+			    <label for="inputTitle" class="col-sm-11 col-form-label">titre</label>
+			    <div class="col-sm-11">
+			      <input type="text" class="form-control" name="title" id="inputTitle" placeholder="Merci de renseigner un titre" th:value="${carousel.title}" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+				<label for="inputTextarea" class="col-sm-11 col-form-label">Description</label>
+ 				<div class="col-sm-11">
+				    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" th:text=${carousel.description}>
+				    </textarea>
+				</div> 
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputPicture" class="col-sm-11 col-form-label">Url de l'image</label>
+			    <div class="col-sm-11">
+			      <input type="text" class="form-control" name="picture" id="inputPicture" th:value="${carousel.picture}" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputOrder" class="col-sm-11 col-form-label">ordre d'apparition</label>
+			    <div class="col-sm-11">
+			      <input type="number" class="form-control" name="orderNumber" id="inputOrder" th:value="${carousel.orderNumber}" required>
+			    </div>
+			  </div>			
+			  <div class="form-group row">
+			    <div class="col-sm-11 d-flex">
+			      <button type="submit" class="btn btn-primary mx-auto">Mettre à jour</button>
+			    </div>
+			  </div>
+			</form>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
