@@ -13,6 +13,8 @@ public interface IAdminServices {
 	
 	public ModelAndView getadminPresentationModel() ;
 	
+	public ModelAndView getadminPrestationModel() ;
+	
 	public ModelAndView getadminStaffModel();
 	
 	public List<List<Staff>> parseStaffList(List<Staff> staffs);

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wildCodeSchool.Wild_Circus.Repositories.CarouselRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.PresentationRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.PrestationRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.StaffRepo;
 import com.wildCodeSchool.Wild_Circus.entities.Staff;
 import com.wildCodeSchool.Wild_Circus.pojo.StaffLists;
@@ -25,6 +26,9 @@ public class AdminServices implements IAdminServices {
 
 	@Autowired
 	StaffRepo staffRepo;
+	
+	@Autowired
+	PrestationRepo prestationRepo;
 
 	@Override
 	public ModelAndView getadminCarouselModel() {
@@ -74,5 +78,15 @@ public class AdminServices implements IAdminServices {
 		}
 		return staffList;
 		
+	}
+
+
+	@Override
+	public ModelAndView getadminPrestationModel() {
+
+		ModelAndView model = new ModelAndView();
+		model.setViewName("adminPrestation");
+		model.addObject("prestations",prestationRepo.findAll());		
+		return model;
 	}
 }

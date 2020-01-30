@@ -10,9 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wildCodeSchool.Wild_Circus.Repositories.CarouselRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.PresentationRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.PrestationRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.StaffRepo;
 import com.wildCodeSchool.Wild_Circus.entities.Carousel;
 import com.wildCodeSchool.Wild_Circus.entities.Presentation;
+import com.wildCodeSchool.Wild_Circus.entities.Prestation;
 import com.wildCodeSchool.Wild_Circus.entities.Staff;
 import com.wildCodeSchool.Wild_Circus.services.IAdminServices;
 import com.wildCodeSchool.Wild_Circus.services.ImodelServices;
@@ -35,6 +37,9 @@ public class Controllers {
 	
 	@Autowired
 	StaffRepo staffRepo;
+	
+	@Autowired
+	PrestationRepo prestationRepo;
 	
 	@GetMapping("/")
 	public ModelAndView gethome() {
@@ -63,6 +68,19 @@ public class Controllers {
 	public ModelAndView getAdminStaff() {
 		
 		return adminServices.getadminStaffModel();
+	}
+	
+	@GetMapping("/admin/prestation")
+	public ModelAndView getAdminPrestation() {
+		
+		return adminServices.getadminPrestationModel();
+	}
+	
+	@PostMapping("/admin/prestation/create")
+	public ModelAndView postAdminPrestation(@ModelAttribute Prestation prestation) {
+		
+		prestationRepo.save(prestation);
+		return new ModelAndView("redirect:/admin/prestation");
 	}
 	
 	@PostMapping("/admin/staff/create")
