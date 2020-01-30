@@ -1,152 +1,42 @@
-<div class="row mb-5" data-aos="fade-left" th:fragment="staff">
-   	<div class="col-md-5  order-md-2">
-   		<h2>L'équipe. <span class="text-muted">Voyez par vous même!</span></h2>
-   		<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-   	</div>
-    <div class="col-md-7 d-flex">
-    <div id="carouselStaff" class="carousel slide w-100" data-ride="carousel" data-interval="false">
-	  <ol class="carousel-indicators cIStaff text-dark">
-	    
+<div class="row mb-5 d-flex justify-content-center align-items-center" data-aos="fade-left" th:fragment="staff">
+   <div class="col-md-5 order-md-2 ">
+      <h2 th:text="${staffPresentation.title}">L'équipe. <span class="text-muted">Voyez par vous même!</span></h2>
+      <p class="lead" th:text="${staffPresentation.description}">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+   </div>
+   <div class="col-md-7 d-flex">
+   <div id="carouselStaff" class="carousel slide w-100 d-flex align-items-center" data-ride="carousel" data-interval="false">
+			  <ol class="carousel-indicators">
+	    <!-- 
 	    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-	    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>		 
+	    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+	    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		 -->
+	    <li th:each="staff : ${staffs}" data-target="#carouselExampleIndicators" th:data-slide-to="${staffs.indexOf(staff)}" class="active cIStaff"></li>
+
 	  </ol>
-	   <div class="container-fluid p-t-0 m-t-2 carousel-inner">
-        <div class="row row-equal carousel-item active m-t-0">
-            <div class="col-md-4">
-			    <div class="card   staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">Dresseurs</h5>
-				    <a href="#" class="btn btn-primary">Vidéo</a>
-				  </div>
-				</div>
+         <div class="container-fluid p-t-0 m-t-2 carousel-inner">
+            <div th:each="staff : ${staffs}" th:class="|carousel-item row row-equal m-t-0 ${staffs.indexOf(staff) == 0 ? 'active' : '' }|">
+               <div class="col-md-4 mx-auto" th:each="staffElement : ${staff}">
+                  <div class="card staffCard" >
+                     <img class="card-img-top" th:src="${staffElement.picture}" alt="Card image cap">
+                     <div class="card-body">
+                        <h5 class="card-title text-center" th:text=${staffElement.name}>Dresseurs</h5>
+                        <a th:href="${staffElement.videoLink}" class="btn btn-primary">Vidéo</a>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="col-md-4">
- 			    <div class="card  staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">Accrobates</h5>
-				    <a href="#" class="btn btn-primary">Vidéo</a>
-				  </div>
-				</div>
-            </div>
-            <div class="col-md-4">
-			    <div class="card   staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">pokemon</h5>
-				    <a href="#" class="btn btn-primary">Vidéo</a>
-				  </div>
-				</div>
-            </div>
-        </div>
-        <div class="row row-equal carousel-item m-t-0 mx-auto">
-             <div class="col-md-4">
-			    <div class="card   staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">titi</h5>
-				    <a href="#" class="btn btn-primary">Vidéo</a>
-				  </div>
-				</div>
-            </div>
-            <div class="col-md-4">
- 			    <div class="card staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">tata</h5>
-				    <a href="#" class="btn btn-primary">Vidéo</a>
-				  </div>
-				</div>
-            </div>
-            <div class="col-md-4">
-			    <div class="card   staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">pokemon</h5>
-				    <a href="#" class="btn btn-primary">Vidéo</a>
-				  </div>
-				</div>
-            </div>
-        </div>
-		  <a class="carousel-control-prev " href="#carouselStaff" role="button" data-slide="prev">
-		    <span class="carousel-control-prev-icon cIStaff" aria-hidden="true"></span>
-		    <span class="sr-only">Previous</span>
-		  </a>
-		  <a class="carousel-control-next" href="#carouselStaff" role="button" data-slide="next">
-		    <span class="carousel-control-next-icon cIStaff" aria-hidden="true"></span>
-		    <span class="sr-only">Next</span>
-		  </a>
-    </div>
-	</div>
-		<!-- old -->
-		<!-- 
-		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">
-	 	  <ol class="carousel-indicators">
-		    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-		    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-		    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-		  </ol>
-		  <div class="carousel-inner">
-		    <div class="carousel-item active d-flex mx-auto">
-			    <div class="card  mx-auto staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">Dresseurs</h5>
-				    <a href="#" class="btn btn-primary">Détails</a>
-				  </div>
-				</div>
-	         	<div class="card  mx-auto staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">Accrobates</h5>
-				    <a href="#" class="btn btn-primary">Détails</a>
-				  </div>
-				</div>
-		    </div>
-		    <div class="carousel-item">
-			    <div class="card  mx-auto staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">toto</h5>
-				    <a href="#" class="btn btn-primary">Détails</a>
-				  </div>
-				</div>
-	         	<div class="card  mx-auto staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">tata</h5>
-				    <a href="#" class="btn btn-primary">Détails</a>
-				  </div>
-				</div>
-		    </div>
-		    <div class="carousel-item">
-			    <div class="card  mx-auto staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">titi</h5>
-				    <a href="#" class="btn btn-primary">Détails</a>
-				  </div>
-				</div>
-	         	<div class="card  mx-auto staffCard">
-				  <img class="card-img-top" src="https://via.placeholder.com/100x100" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title text-center">tutu</h5>
-				    <a href="#" class="btn btn-primary">Détails</a>
-				  </div>
-				</div>
-		    </div>
-		    </div>
-		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>		    
-		  </div>
-	 -->
-	</div>		          	
-       
+            
+            <a class="carousel-control-prev " href="#carouselStaff" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon cIStaff" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselStaff" role="button" data-slide="next">
+            <span class="carousel-control-next-icon cIStaff" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </a>
+         </div>
+      </div>
+   </div>
+
 </div>
