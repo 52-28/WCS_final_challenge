@@ -5,4 +5,6 @@ import org.springframework.web.servlet.ModelAndView;
 public interface IAdminServices {
 
 	public ModelAndView getadminCarouselModel();
+	
+	public ModelAndView getadminPresentationModel() ;
 }

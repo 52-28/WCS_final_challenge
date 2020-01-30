@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wildCodeSchool.Wild_Circus.Repositories.CarouselRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.PresentationRepo;
 import com.wildCodeSchool.Wild_Circus.entities.Carousel;
+import com.wildCodeSchool.Wild_Circus.entities.Presentation;
 import com.wildCodeSchool.Wild_Circus.services.IAdminServices;
 import com.wildCodeSchool.Wild_Circus.services.ImodelServices;
 import com.wildCodeSchool.Wild_Circus.services.ModelServices;
@@ -26,6 +28,9 @@ public class Controllers {
 	@Autowired
 	CarouselRepo carouselRepo;
 	
+	@Autowired
+	PresentationRepo presentationRepo;
+	
 	@GetMapping("/")
 	public ModelAndView gethome() {
 		
@@ -41,6 +46,19 @@ public class Controllers {
 	public ModelAndView getAdminCarousel() {
 		
 		return adminServices.getadminCarouselModel();
+	}
+	
+	@GetMapping("/admin/presentation")
+	public ModelAndView getAdminPresentation() {
+		
+		return adminServices.getadminPresentationModel();
+	}
+	
+	@PostMapping("/admin/presentation/update")
+	public ModelAndView postAdminPresentation(@ModelAttribute Presentation presentation) {
+		
+		presentationRepo.save(presentation);
+		return new ModelAndView("redirect:/admin/presentation");
 	}
 	
 	@PostMapping("/admin/carousel/create")
