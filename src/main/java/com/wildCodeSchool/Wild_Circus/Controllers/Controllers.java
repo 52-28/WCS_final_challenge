@@ -1,7 +1,15 @@
 package com.wildCodeSchool.Wild_Circus.Controllers;
 
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +25,7 @@ import com.wildCodeSchool.Wild_Circus.entities.Presentation;
 import com.wildCodeSchool.Wild_Circus.entities.Prestation;
 import com.wildCodeSchool.Wild_Circus.entities.Staff;
 import com.wildCodeSchool.Wild_Circus.services.IAdminServices;
+import com.wildCodeSchool.Wild_Circus.services.IUtilServices;
 import com.wildCodeSchool.Wild_Circus.services.ImodelServices;
 import com.wildCodeSchool.Wild_Circus.services.ModelServices;
 
@@ -41,15 +50,32 @@ public class Controllers {
 	@Autowired
 	PrestationRepo prestationRepo;
 	
+	@Autowired
+	IUtilServices utilServices;
+	
 	@GetMapping("/")
-	public ModelAndView gethome() {
-		
-		return modelServices.getHomeModel();
+	public ModelAndView gethome(@RequestParam(value="prestationsResult", required=false) List<Prestation> prestationsResult) {
+		System.out.println(prestationsResult == null);
+		return modelServices.getHomeModel(prestationsResult);
+	}
+	
+	@GetMapping("/searchForPrestation")
+	public ModelAndView searchForPrestation(@RequestParam(value = "city", required=true) String city) {
+		ModelMap model = new ModelMap();		
+		List<Prestation> prestationsResult = utilServices.searchForPrestation(city);
+		model.addAttribute("prestationsResult", prestationsResult);
+		System.out.println(prestationsResult.size());
+		return modelServices.getHomeModel(prestationsResult);
 	}
 
 	@GetMapping("/admin")
 	public ModelAndView getAdmin() {
 		return new ModelAndView("admin");
+	}
+	
+	@PostMapping("/postReservation")
+	public ModelAndView postForReservation(@ModelAttribute Long prestationId) {
+		return null;
 	}
 	
 	@GetMapping("/admin/carousel")

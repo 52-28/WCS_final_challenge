@@ -26,16 +26,17 @@
 		          <div class="col-md-4">
 		            <h2 class="featurette-heading p-2">Rechercher un spectacle. <span class="text-muted">Pres de chez vous</span></h2>
 				  </div>
+				  
 				  <div class ="col-md-6">	
 					<form th:replace="/fragments/searchForm :: SearchForSpectacle"></form>
 		          </div>
 		         </div>
 		
-		        <hr class="featurette-divider">
+		        <hr class="featurette-divider" th:if="${prestationsResult} != null">
 		        
 		        <div class="row featurette mb-5 mt-2">
 		          <div class="col-md-10">
-		            <h2 class="featurette-heading p-2">Résultats de votre recherche</h2>
+		            <h2 class="featurette-heading p-2" id="Recherche" th:if="${prestationsResult} != null" th:text="|Résultats de votre recherche (${prestationsResult.size()})|"></h2>
 					<div th:replace="/fragments/results :: result"></div>
 		         </div>
 		        </div>
@@ -50,7 +51,52 @@
 		         </div>
 		        </div>
 		          
-		
+		<div class="modal fade"  th:each="prestation : ${prestationsResult}" th:id="${prestation.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" th:id="|exampleModalLabel${prestation.id}|" th:text="|Réserver ses places pour: ${prestation.city}|">Réserver ses places</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<form method="post" th:action="|/reservation|">
+				<input type="hidden" name="prestationId" th:value="${prestation.id}">
+			  <div class="form-group row">
+			    <label for="inputFName" class="col-sm-2 col-form-label">Prénom</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="firtName" id="inputFName" placeholder="Jean-Michel" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputLName" class="col-sm-2 col-form-label">Nom</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" name="lastName" id="inputLName" placeholder="Le meilleur de la Wild" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputMail" class="col-sm-2 col-form-label">Email</label>
+			    <div class="col-sm-10">
+			      <input type="email" class="form-control" name="email" id="inputMail" placeholder="jm-leMeilleurDeLaWild@Wild.com" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <label for="inputPlaces" class="col-sm-5 col-form-label">Nombre de places</label>
+			    <div class="col-sm-5">
+			      <input type="number" class="form-control" name="places" id="inputPlaces" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <div class="col-sm-10">
+			      <button type="submit" class="btn btn-primary">réserver</button>
+			    </div>
+			  </div>
+			</form>
+	      </div>     
+	    </div>
+	  </div>
+	</div>
 		      </div><!-- /.container -->
 		</main>
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

@@ -20,4 +20,5 @@ values ("Dresseurs","","","https://cdn.radiofrance.fr/s3/cruiser-production/2017
 INSERT INTO prestation (description, title, city, price,max_places, representation_date)
 values ("Zenith","Le grand Show d'Orléans","Orléans","50",200,"2020-1-31"),
 	   ("Zenith","Le grand Show de Paris","Paris XII","70",300,"2020-2-28"),
+	   ("Zenith","Le grand Show de Paris","Paris XV","70",300,"2020-4-30"),
 	   ("Zenith","Le grand Show de Strasboug","Strasbourg","20",100,"2020-3-25");
