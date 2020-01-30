@@ -12,6 +12,7 @@ public class Presentation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String section;
 	@Lob
 	private String title;
 	@Lob
@@ -54,6 +55,14 @@ public class Presentation {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getSection() {
+		return section;
+	}
+
+	public void setSection(String section) {
+		this.section = section;
 	}
 	
 }
