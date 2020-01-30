@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Console d'administration">
+  <title>Console d'administration</title>
+  <meta name="author" content="Aymeric">
+
+  <title>Console d'administration</title>
+
+  <!-- Bootstrap core CSS -->
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lux/bootstrap.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="../simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Navigation </div>
+      <div class="list-group list-group-flush">
+      	<a href="/admin" class="list-group-item list-group-item-action bg-light">home</a>
+        <a href="/admin/carousel" class="list-group-item list-group-item-action bg-light">Carousel</a>
+        <a href="/admin/presentation" class="list-group-item list-group-item-action bg-light">Presentation</a>
+        <a href="/admin/equipe" class="list-group-item list-group-item-action bg-light">Equipe</a>
+        <a href="/admin/prestation" class="list-group-item list-group-item-action bg-light">Spectacles</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Reservations</a>
+
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-dark bg-light border-bottom">
+        <button class="navbar-toggler bg-dark text-light" id="menu-toggle">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="mt-4">Administration des spectacles</h1>
+ 		<div class="row d-flex justify-content-center align-items-center m-2">
+	 		<!-- Button trigger modal -->
+				<div class="col-12 m-5 d-flex align-items-center">
+					<button type="button" class="btn btn-primary my-auto" data-toggle="modal" data-target="#exampleModal">
+					 	Créer un spectacle
+					</button>
+				</div>
+ 		</div>
+ 		<hr>
+ 		<div class="row d-flex  align-items-center m-2">
+ 		<h2 class="text-left">Edition des spectacles</h2>
+
+ 		<div class="col-8 m-5 " th:each="prestation : ${prestations}">
+	 			<div class="card d-flex flex-row">
+	 			  <div class="card-body">
+					<div class="d-flex justify-content-center align-items-center">
+					    <h5 class="card-title text-center my-auto" th:text="${prestation.title}">Card title</h5>
+					    <form method="post" class="d-flex ml-auto" th:action="|/admin/prestation/delete|">
+				            <input type="hidden" name="id" th:value="${prestation.id}">
+			                <button type="submit" class="btn btn-secondary customBtn" onclick="return confirm('Etes-vous sûrs de vouloir supprimer cet item ? Il sera définitivement effacé de la base de donnée !');">							
+	
+								<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash-alt" class="svg-inline--fa fa-trash-alt fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path></svg>		      			 </button>
+			            </form>		            
+		            </div>
+		            <hr>
+				    <form method="post" th:action="|/admin/prestation/create|">
+	                   		<input type="hidden" name="id" th:value="${prestation.id}">		  
+							  <div class="form-group row">
+							    <label for="inputTitle" class="col-sm-11 col-form-label">titre</label>
+							    <div class="col-sm-11">
+							      <input type="text" class="form-control" name="title" id="inputTitle" placeholder="Merci de renseigner le nom de l'équipe" th:value="${prestation.title}" required>
+							    </div>
+							  </div>
+							  <div class="form-group row">
+							    <label for="inputCity" class="col-sm-11 col-form-label">Ville</label>
+							    <div class="col-sm-11">
+							      <input type="text" class="form-control" name="city" id="inputCity" placeholder="Merci de renseigner a ville" th:value="${prestation.city}" required>
+							    </div>
+							  </div>
+							  <div class="form-group row">
+							    <label for="inputPrice" class="col-sm-11 col-form-label">prix de la place</label>
+							    <div class="col-sm-11">
+							      <input type="number" class="form-control" name="price" id="inputPrice" placeholder="Merci de renseigner le prix de la place" th:value="${prestation.price}" required>
+							    </div>
+							  </div>
+							  <div class="form-group row">
+							    <label for="inputPlaces" class="col-sm-11 col-form-label">nombre de places</label>
+							    <div class="col-sm-11">
+							      <input type="number" class="form-control" name="maxPlaces" id="inputPlaces" placeholder="Merci de renseigner le prix de la place" th:value="${prestation.maxPlaces}" required>
+							    </div>
+							  </div>
+							  <div class="form-group row">
+							    <label for="inputDate" class="col-sm-11 col-form-label">Jour de la représentation</label>
+							    <div class="col-sm-11">
+							      <input type="date" class="form-control" name="representationDate" id="inputDate" placeholder="Merci de renseigner le jour de la représentation" th:value="${prestation.representationDate}" required>
+							    </div>
+							  </div>
+							  
+							  <div class="form-group row">
+							    <div class="col-sm-11 d-flex">
+							      <button type="submit" class="btn btn-primary mx-auto">Editer</button>
+							    </div>							 
+		                       </div> 
+						</form>					
+				  </div>
+				</div>
+			</div>
+  		</div>		
+     </div>
+    <!-- /#page-content-wrapper -->
+	<!-- Modal create-->
+	<div th:replace="/fragments/modaleCreatePrestation.html :: modaleCreatePrestation"></div>
+  </div>
+</div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+ 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>

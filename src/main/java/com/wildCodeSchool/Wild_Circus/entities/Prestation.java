@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 public class Prestation {
@@ -25,6 +27,7 @@ public class Prestation {
 	private String city;
 	private int price;
 	private double maxPlaces;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date representationDate;
 	private String gps;
 	@ManyToMany
@@ -112,6 +115,16 @@ public class Prestation {
 
 	public void setTricks(List<Trick> tricks) {
 		this.tricks = tricks;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	

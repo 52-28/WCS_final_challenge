@@ -1,7 +1,15 @@
 package com.wildCodeSchool.Wild_Circus.Controllers;
 
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,9 +18,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wildCodeSchool.Wild_Circus.Repositories.CarouselRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.PresentationRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.PrestationRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.ReservationRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.StaffRepo;
 import com.wildCodeSchool.Wild_Circus.entities.Carousel;
 import com.wildCodeSchool.Wild_Circus.entities.Presentation;
+import com.wildCodeSchool.Wild_Circus.entities.Prestation;
+import com.wildCodeSchool.Wild_Circus.entities.Reservation;
+import com.wildCodeSchool.Wild_Circus.entities.Staff;
 import com.wildCodeSchool.Wild_Circus.services.IAdminServices;
+import com.wildCodeSchool.Wild_Circus.services.IUtilServices;
 import com.wildCodeSchool.Wild_Circus.services.ImodelServices;
 import com.wildCodeSchool.Wild_Circus.services.ModelServices;
 
@@ -31,15 +46,42 @@ public class Controllers {
 	@Autowired
 	PresentationRepo presentationRepo;
 	
+	@Autowired
+	StaffRepo staffRepo;
+	
+	@Autowired
+	PrestationRepo prestationRepo;
+	
+	@Autowired
+	IUtilServices utilServices;
+	
+	@Autowired
+	ReservationRepo reservationRepo;
+	
 	@GetMapping("/")
-	public ModelAndView gethome() {
-		
-		return modelServices.getHomeModel();
+	public ModelAndView gethome(@RequestParam(value="prestationsResult", required=false) List<Prestation> prestationsResult) {
+		return modelServices.getHomeModel(prestationsResult);
+	}
+	
+	@GetMapping("/searchForPrestation")
+	public ModelAndView searchForPrestation(@RequestParam(value = "city", required=true) String city) {
+		ModelMap model = new ModelMap();		
+		List<Prestation> prestationsResult = utilServices.searchForPrestation(city);
+		model.addAttribute("prestationsResult", prestationsResult);
+		System.out.println(prestationsResult.size());
+		return modelServices.getHomeModel(prestationsResult);
 	}
 
 	@GetMapping("/admin")
 	public ModelAndView getAdmin() {
 		return new ModelAndView("admin");
+	}
+	
+	@PostMapping("/postReservation")
+	public ModelAndView postForReservation(@ModelAttribute Reservation reservation, @RequestParam Long prestationId) {
+		reservation.setPrestation(prestationRepo.getOne(prestationId));
+		reservationRepo.save(reservation);
+		return new ModelAndView("redirect:/");
 	}
 	
 	@GetMapping("/admin/carousel")
@@ -52,6 +94,39 @@ public class Controllers {
 	public ModelAndView getAdminPresentation() {
 		
 		return adminServices.getadminPresentationModel();
+	}
+	
+	@GetMapping("/admin/equipe")
+	public ModelAndView getAdminStaff() {
+		
+		return adminServices.getadminStaffModel();
+	}
+	
+	@GetMapping("/admin/prestation")
+	public ModelAndView getAdminPrestation() {
+		
+		return adminServices.getadminPrestationModel();
+	}
+	
+	@PostMapping("/admin/prestation/create")
+	public ModelAndView postAdminPrestation(@ModelAttribute Prestation prestation) {
+		
+		prestationRepo.save(prestation);
+		return new ModelAndView("redirect:/admin/prestation");
+	}
+	
+	@PostMapping("/admin/staff/create")
+	public ModelAndView postAdminStaff(@ModelAttribute Staff staff) {
+	
+		staffRepo.save(staff);
+		return new ModelAndView("redirect:/admin/equipe");
+	}
+	
+	@PostMapping("/admin/staff/delete")
+	public ModelAndView deleteAdminStaff(@RequestParam Long id) {
+	
+		staffRepo.deleteById(id);
+		return new ModelAndView("redirect:/admin/equipe");
 	}
 	
 	@PostMapping("/admin/presentation/update")

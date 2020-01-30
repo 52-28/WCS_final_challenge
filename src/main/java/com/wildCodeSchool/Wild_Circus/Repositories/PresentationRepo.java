@@ -7,4 +7,5 @@ import com.wildCodeSchool.Wild_Circus.entities.Presentation;
 @Repository
 public interface PresentationRepo extends JpaRepository<Presentation, Long>{
 
+	public Presentation findBySection(String section);
 }

@@ -1,7 +1,8 @@
 package com.wildCodeSchool.Wild_Circus.services;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wildCodeSchool.Wild_Circus.Repositories.CarouselRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.PresentationRepo;
+import com.wildCodeSchool.Wild_Circus.Repositories.PrestationRepo;
 import com.wildCodeSchool.Wild_Circus.Repositories.StaffRepo;
 import com.wildCodeSchool.Wild_Circus.entities.Prestation;
 
 @Service
-public class ModelServices implements ImodelServices {
+public class UtilServices implements IUtilServices {
 
 	@Autowired
 	CarouselRepo carouselRepo;
@@ -27,19 +29,19 @@ public class ModelServices implements ImodelServices {
 	@Autowired
 	IAdminServices adminService;
 	
-	@Override
-	public ModelAndView getHomeModel(List<Prestation> prestations) {
+	@Autowired
+	PrestationRepo prestationRepo;
 
-		ModelAndView model = new ModelAndView();
-		if (prestations != null) {
-			model.addObject("prestationsResult", prestations);
-		}
-		model.setViewName("index");
-		model.addObject("carousel",carouselRepo.findAll());
-		model.addObject("presentation", presentationRepo.findBySection("Presentation"));		
-		model.addObject("staffPresentation",presentationRepo.findBySection("staff"));
-		model.addObject("staffs", adminService.parseStaffList(staffRepo.findAll()));
-		
-		return model;
+	@Override
+	public List<Prestation> searchForPrestation(String city) {
+		List<Prestation> myList = new ArrayList<Prestation>();
+		if (city != null) {
+				myList = prestationRepo.findByCityContaining(city);				
+			}
+		else 
+			throw new IllegalArgumentException("impossible de toruver des enregistrements sur variable null");
+		return myList;
 	}
+	
+	
 }
