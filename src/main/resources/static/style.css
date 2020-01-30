@@ -16,3 +16,8 @@
 .staffCard{
 	width:10vw;
 }
+
+.section100{
+	height:100vh;
+	max-height:100%;
+}
