@@ -21,7 +21,7 @@
                      <img class="card-img-top" th:src="${staffElement.picture}" alt="Card image cap">
                      <div class="card-body">
                         <h5 class="card-title text-center" th:text=${staffElement.name}>Dresseurs</h5>
-                        <a th:href="${staffElement.videoLink}" class="btn btn-primary">Vidéo</a>
+ 						<a th:href="${staffElement.videoLink}" th:id="|headerVideoLink${staffElement.id}|" target="_blank" class="btn btn-primary">Vidéo</a>
                      </div>
                   </div>
                </div>
