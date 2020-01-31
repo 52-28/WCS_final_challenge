@@ -6,6 +6,10 @@ main{
 	overflow: hidden;
 }
 
+.customPolice{
+	font-family: 'Annie Use Your Telescope', cursive;
+	font-size: 19pt;
+}
 
 .carousel-caption{
 	
@@ -124,6 +128,7 @@ li{
 
 .logo{
 	width:50%;
+	max-width:100px;
 }
 
 .logo:hover{

@@ -110,7 +110,7 @@ public class Controllers {
 	
 	@PostMapping("/admin/prestation/create")
 	public ModelAndView postAdminPrestation(@ModelAttribute Prestation prestation) {
-		
+
 		prestationRepo.save(prestation);
 		return new ModelAndView("redirect:/admin/prestation");
 	}
@@ -131,7 +131,7 @@ public class Controllers {
 	
 	@PostMapping("/admin/presentation/update")
 	public ModelAndView postAdminPresentation(@ModelAttribute Presentation presentation) {
-		
+		presentation.setSection("presentation");;
 		presentationRepo.save(presentation);
 		return new ModelAndView("redirect:/admin/presentation");
 	}

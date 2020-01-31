@@ -32,9 +32,9 @@
 		
 		        
 		        
-		        <div class="row featurette mb-5 mt-2 justify-content-around align-items-center flex-column sectionHeight bg2" data-aos="fade-top">
+		        <div th:if="${prestationsResult} != null" class="row featurette mb-5 mt-2 justify-content-around align-items-center flex-column sectionHeight bg2" data-aos="fade-top">
 		          <div class="col-md-4 align-self-left mr-auto">
-		            <h2 class="featurette-heading p-2 text-light" id="Recherche" th:if="${prestationsResult} != null" th:text="|Résultats de votre recherche (${prestationsResult.size()})|"></h2>					
+		            <h2 class="featurette-heading p-2 text-light" id="Recherche"  th:text="|Résultats de votre recherche (${prestationsResult.size()})|"></h2>					
 		         </div>
 		         <div th:replace="/fragments/results :: result"></div>
 		        </div>
@@ -50,7 +50,7 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-			<form method="post" th:action="|/postReservation|">
+			<form method="post" action="|/postReservation|">
 				<input type="hidden" name="prestationId" th:value="${prestation.id}">
 			  <div class="form-group row">
 			    <label for="inputFName" class="col-sm-2 col-form-label">Prénom</label>
@@ -91,39 +91,39 @@
 		<div class="container">
   <div class="content"></div>
   <footer class="row">
-    <div class="sozial col-xs-12 col-sm-6 col-sm-push-6">
+    <div class="sozial col-12 col-sm-6 col-sm-push-6">
       <ul class="row">
-        <li class="col-xs-6 col-sm-2">
+        <li class="col-6 col-sm-2 mt-2">
           <a href="#">
             <img class="logo" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/online_social_media_facebook-128.png">
           </a>
         </li>
-        <li class="col-xs-6 col-sm-2">
+        <li class="col-6 col-sm-2 mt-2">
           <a href="#">
             <img class="logo" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/twitter_online_social_media-128.png">
           </a>
         </li>
-        <li class="col-xs-6 col-sm-2">
+        <li class="col-6 col-sm-2 mt-2">
           <a href="#">
             <img class="logo" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/instagram_online_social_media_photo-128.png">
           </a>
         </li>
-        <li class="col-xs-6 col-sm-2">
+        <li class="col-6 col-sm-2 mt-2">
           <a href="#">
             <img class="logo" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/online_social_media_google_plus-128.png">
           </a>
         </li>
       </ul>
-    </div><!-- Ende Sozial media -->
+    </div>
     
-    <div class="copyright col-xs-12 col-sm-3 col-sm-pull-6">
-      <p> &copy; Me from now to eternity </p>
-    </div><!-- Ende Copyright -->
+    <div class="copyright col-12 col-sm-3 text-center text-sm-left">
+      <p> &copy; Made by Me ;)</p>
+    </div>
     
-    <div class="impressum col-xs-12 col-sm-3 col-sm-pull-6">
-      <p> An impressive impressum </p>
-      <p> Adresse und so </p>
-    </div><!-- Ende Impressum -->
+    <div class="impressum col-12 col-sm-3 text-center text-sm-left">
+      <p> C'est de toute beauté </p>
+      <p> Wild Code School Orléans</p>
+    </div>
   </footer>
 </div>
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
